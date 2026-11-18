@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECT SHARE | Academic Distribution Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #070d19;
+            --surface-color: #0c1a30;
+            --surface-border: #1a3052;
+            --primary-accent: #2563eb;
+            --primary-hover: #1d4ed8;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(37, 99, 235, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(16, 185, 129, 0.10) 0%, transparent 40%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .vault-card {
+            background: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            border-radius: 16px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(37, 99, 235, 0.08);
+            width: 100%;
+            max-width: 550px;
+            overflow: hidden;
+            position: relative;
+            animation: cardAppear 0.4s ease-out;
+        }
+
+        @keyframes cardAppear {
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .header-bar {
+            background: linear-gradient(135deg, #0f2444 0%, #0c1a30 100%);
+            padding: 30px 30px 24px;
+            border-bottom: 1px solid var(--surface-border);
+            text-align: center;
+        }
+
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(37, 99, 235, 0.2);
+            border: 1px solid rgba(37, 99, 235, 0.4);
+            color: #93c5fd;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 11.5px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .header-bar h1 {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .header-bar p {
+            font-size: 13.5px;
+            color: #38bdf8;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .authors-tag {
+            margin-top: 8px;
+            font-size: 12.5px;
+            color: #cbd5e1;
+            font-weight: 600;
+        }
+
+        .authors-tag span {
+            color: #fbbf24;
+            font-weight: 700;
+        }
+
+        .body-section {
+            padding: 32px 30px;
+        }
+
+        .stage-box {
+            display: none;
+        }
+
+        .stage-box.active {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #cbd5e1;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .input-control {
+            width: 100%;
+            height: 48px;
+            background: #071224;
+            border: 1px solid var(--surface-border);
+            border-radius: 8px;
+            padding: 10px 16px;
+            color: #ffffff;
+            font-size: 14.5px;
+            transition: all 0.2s ease;
+        }
+
+        .input-control:focus {
+            outline: none;
+            border-color: var(--primary-accent);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+            background: #091730;
+        }
+
+        .mono-input {
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .validation-hint {
+            margin-top: 6px;
+            font-size: 11.5px;
+            line-height: 1.4;
+            transition: color 0.2s ease;
+        }
+
+        .hint-default { color: var(--text-muted); }
+        .hint-valid { color: var(--success-color); font-weight: 600; }
+        .hint-invalid { color: var(--error-color); font-weight: 600; }
+
+        .btn-action {
+            width: 100%;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-accent) 0%, var(--primary-hover) 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-action:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .shake-animation {
+            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-2px, 0, 0); }
+            20%, 80% { transform: translate3d(4px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+            40%, 60% { transform: translate3d(6px, 0, 0); }
+        }
+
+        .info-card {
+            background: rgba(37, 99, 235, 0.08);
+            border: 1px dashed rgba(37, 99, 235, 0.35);
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 22px;
+            font-size: 13px;
+            color: #93c5fd;
+            line-height: 1.6;
+        }
+
+        .success-box {
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        .success-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--success-color);
+            border: 2px solid var(--success-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 16px;
+        }
+
+        .spinner-icon {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 2px solid #ffffff;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .footer-note {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #64748b;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="vault-card" id="vaultCard">
+        <!-- Header -->
+        <div class="header-bar">
+            <div class="badge-pill">🔒 Secure Academic Distribution</div>
+            <h1>PROJECT SHARE</h1>
+            <p>B.Tech CSE Semester-5 • ITM SLS Baroda University</p>
+            <div class="authors-tag">
+                Project Creators: <span>Bhavikkumar Patel</span> &amp; <span>Diya Matariya</span>
+            </div>
+        </div>
+
+        <div class="body-section">
+            
+            <!-- STAGE 1: Password Gate -->
+            <div id="stage-password" class="stage-box active">
+                <div class="info-card">
+                    🙏 <strong>Jay Swaminarayan:</strong> Welcome to the official source repository for <strong>Project Share</strong>. Enter the authorized passkey to unlock the repository download gate.
+                </div>
+
+                <div class="form-group">
+                    <label for="vault_password">Master Access Password</label>
+                    <input type="password" id="vault_password" class="input-control" placeholder="Enter password to access project..." autocomplete="off">
+                    <div id="pwd_hint" class="validation-hint hint-default">
+                        Requires authorized access key.
+                    </div>
+                </div>
+
+                <button type="button" class="btn-action" onclick="verifyPassword()">
+                    Unlock Project Repository &rarr;
+                </button>
+            </div>
+
+            <!-- STAGE 2: Student Details Gate -->
+            <div id="stage-details" class="stage-box">
+                <div class="info-card">
+                    📋 <strong>Student Identity Verification:</strong> Academic verification is required to generate your authorized download token.
+                </div>
+
+                <div class="form-group">
+                    <label for="student_name">Student Full Name *</label>
+                    <input type="text" id="student_name" class="input-control" placeholder="e.g., Bhavikkumar Patel">
+                </div>
+
+                <div class="form-group">
+                    <label for="student_email">Student Email Address *</label>
+                    <input type="email" id="student_email" class="input-control" placeholder="e.g., student@itmslsbu.ac.in">
+                </div>
+
+                <div class="form-group">
+                    <label for="student_enrollment">Enrollment Number *</label>
+                    <input type="text" id="student_enrollment" class="input-control mono-input" placeholder="e.g., 24C21003 or 25C21503" maxlength="8" oninput="validateEnrollmentLive(this.value)">
+                    <div id="enrollment_hint" class="validation-hint hint-default">
+                        Pattern: (24 or 25) + C(21/22/23/24) + (001-200 or 501-600)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="link_sender">Who shared this link with you? *</label>
+                    <select id="link_sender" class="input-control" style="cursor: pointer;">
+                        <option value="Bhavikkumar Patel">Bhavikkumar Patel</option>
+                        <option value="Diya Matariya">Diya Matariya</option>
+                        <option value="Course WhatsApp Group">Course WhatsApp Group</option>
+                        <option value="Classmate / Peer">Classmate / Peer</option>
+                    </select>
+                </div>
+
+                <button type="button" id="btn-submit-download" class="btn-action" onclick="submitAndDownload()">
+                    <span id="btn-spinner" class="spinner-icon" style="display: none;"></span>
+                    <span id="btn-text">Authorize &amp; Download Source ZIP &darr;</span>
+                </button>
+            </div>
+
+            <!-- STAGE 3: Success Screen -->
+            <div id="stage-success" class="stage-box">
+                <div class="success-box">
+                    <div class="success-icon">✓</div>
+                    <h2 style="font-size: 20px; font-weight: 800; color: #ffffff; margin-bottom: 8px;">Download Authorized!</h2>
+                    <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
+                        Credentials verified. Your clean project codebase (<code>PROJECT-SHARE.zip</code>) is downloading now.
+                    </p>
+
+                    <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px; padding: 14px; font-size: 12.5px; color: #a7f3d0; text-align: left; margin-bottom: 20px;">
+                        <strong>📦 Core Architecture Codebase:</strong><br>
+                        • Flask WSGI Application (`app.py`, `models.py`)<br>
+                        • MySQL + SQLite Database Config (`config.py`, `database_setup.sql`)<br>
+                        • Live Razorpay Standard Checkout (`templates/payment.html`)<br>
+                        • Dynamic HTML Templates, Static Assets &amp; Email Engine
+                    </div>
+
+                    <a href="PROJECT-SHARE.zip" download="PROJECT-SHARE.zip" class="btn-action" style="text-decoration: none;">
+                        Click here if download didn't start automatically &darr;
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="footer-note">
+        Jay Swaminarayan • ITM SLS Baroda University, Vadodara<br>
+        School of Computer Science &amp; Engineering • AY 2026-2027
+    </div>
+
+    <script type="text/javascript">
+        const VAULT_PASS = 'PBL-Submission-2026';
+        
+        // Regex: 24 or 25 + C + 21, 22, 23, or 24 + 001-200 or 501-600
+        const ENROLL_REGEX = /^(24|25)C(21|22|23|24)(00[1-9]|0[1-9][0-9]|1[0-9]{2}|200|50[1-9]|5[1-9][0-9]|600)$/i;
+
+        // Stage 1: Verify Password
+        function verifyPassword() {
+            const pwdInput = document.getElementById('vault_password');
+            const hint = document.getElementById('pwd_hint');
+            const card = document.getElementById('vaultCard');
+
+            if (pwdInput.value.trim() === VAULT_PASS) {
+                document.getElementById('stage-password').classList.remove('active');
+                document.getElementById('stage-details').classList.add('active');
+            } else {
+                card.classList.remove('shake-animation');
+                void card.offsetWidth;
+                card.classList.add('shake-animation');
+
+                hint.className = 'validation-hint hint-invalid';
+                hint.innerText = '❌ Incorrect password! Please check with Bhavik or Diya.';
+                pwdInput.focus();
+            }
+        }
+
+        // Live Regex Checking
+        function validateEnrollmentLive(val) {
+            const clean = val.trim().toUpperCase();
+            const hint = document.getElementById('enrollment_hint');
+
+            if (!clean) {
+                hint.className = 'validation-hint hint-default';
+                hint.innerText = 'Pattern: (24 or 25) + C(21/22/23/24) + (001-200 or 501-600)';
+                return false;
+            }
+
+            if (ENROLL_REGEX.test(clean)) {
+                hint.className = 'validation-hint hint-valid';
+                hint.innerText = '✓ Valid ITM SLS BU Enrollment Number (' + clean + ')';
+                return true;
+            } else {
+                hint.className = 'validation-hint hint-invalid';
+                hint.innerText = '⚠️ Invalid! Must be e.g., 24C21003 or 25C21503 (001-200 or 501-600)';
+                return false;
+            }
+        }
+
+        // Submit & Download Action
+        async function submitAndDownload() {
+            const name = document.getElementById('student_name').value.trim();
+            const email = document.getElementById('student_email').value.trim();
+            const enrollment = document.getElementById('student_enrollment').value.trim().toUpperCase();
+            const sender = document.getElementById('link_sender').value;
+
+            if (!name) { alert('Please enter your full name.'); return; }
+            if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+            if (!ENROLL_REGEX.test(enrollment)) {
+                alert('Invalid Enrollment Number! Must be 24 or 25 + C21/C22/C23/C24 + 001-200 or 501-600 (e.g. 24C21003 or 25C21503).');
+                return;
+            }
+
+            const btn = document.getElementById('btn-submit-download');
+            const spinner = document.getElementById('btn-spinner');
+            const text = document.getElementById('btn-text');
+
+            btn.disabled = true;
+            spinner.style.display = 'inline-block';
+            text.innerText = 'Verifying credentials...';
+
+            try {
+                const response = await fetch('/api/verify-and-download', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        password: VAULT_PASS,
+                        name: name,
+                        email: email,
+                        enrollment: enrollment,
+                        sender: sender
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    triggerDirectDownload();
+                    document.getElementById('stage-details').classList.remove('active');
+                    document.getElementById('stage-success').classList.add('active');
+                } else {
+                    alert(data.error || 'Verification failed.');
+                    btn.disabled = false;
+                    spinner.style.display = 'none';
+                    text.innerText = 'Authorize & Download Source ZIP ↓';
+                }
+            } catch (err) {
+                // Client-side fallback if hosted on static GitHub Pages
+                console.warn('Direct static download mode:', err);
+                triggerDirectDownload();
+                document.getElementById('stage-details').classList.remove('active');
+                document.getElementById('stage-success').classList.add('active');
+            }
+        }
+
+        function triggerDirectDownload() {
+            const a = document.createElement('a');
+            a.href = 'PROJECT-SHARE.zip';
+            a.download = 'PROJECT-SHARE.zip';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        document.getElementById('vault_password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') verifyPassword();
+        });
+    </script>
+
+</body>
+</html>

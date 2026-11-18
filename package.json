@@ -1,0 +1,14 @@
+{
+  "name": "pbl-project-sharing-portal",
+  "version": "1.0.0",
+  "description": "Secure Project Vault & Download Verification Portal for Bhavik & Diya (B.Tech CSE)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemailer": "^6.9.13",
+    "cors": "^2.8.5"
+  }
+}
