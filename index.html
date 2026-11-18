@@ -445,7 +445,8 @@
             text.innerText = 'Verifying credentials...';
 
             try {
-                const response = await fetch('/api/verify-and-download', {
+                // 1. If Node.js backend is active, submit to Express
+                fetch('/api/verify-and-download', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -455,23 +456,34 @@
                         enrollment: enrollment,
                         sender: sender
                     })
-                });
+                }).catch(e => console.log('Node backend offline, using static alert engine.'));
 
-                const data = await response.json();
-                
-                if (data.success) {
+                // 2. Direct Cloud Alert to Bhavik (Works 100% on GitHub Pages without server)
+                fetch('https://formsubmit.co/ajax/bhavik.itmbu@gmail.com', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _subject: `🚨 [PROJECT SHARE ALERT] Downloaded by ${name} (${enrollment})`,
+                        "Student Name": name,
+                        "Student Email": email,
+                        "Enrollment Number": enrollment,
+                        "Referred By": sender,
+                        "Timestamp": new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+                        "Project": "PROJECT SHARE (B.Tech CSE Semester-5)"
+                    })
+                }).catch(err => console.log('Static alert notice:', err));
+
+                // 3. Trigger download of PROJECT-SHARE.zip
+                setTimeout(() => {
                     triggerDirectDownload();
                     document.getElementById('stage-details').classList.remove('active');
                     document.getElementById('stage-success').classList.add('active');
-                } else {
-                    alert(data.error || 'Verification failed.');
-                    btn.disabled = false;
-                    spinner.style.display = 'none';
-                    text.innerText = 'Authorize & Download Source ZIP ↓';
-                }
+                }, 600);
+
             } catch (err) {
-                // Client-side fallback if hosted on static GitHub Pages
-                console.warn('Direct static download mode:', err);
                 triggerDirectDownload();
                 document.getElementById('stage-details').classList.remove('active');
                 document.getElementById('stage-success').classList.add('active');
