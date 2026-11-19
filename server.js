@@ -19,6 +19,20 @@ const NOTIFY_EMAIL = 'bhavik.itmbu@gmail.com';
 const SMTP_USER = 'bhavik.itmbu@gmail.com';
 const SMTP_PASS = 'qlyanvagtiyhtple'; // Gmail App Password
 
+// 10 Authorized Referral Codes generated for Bhavik Patel
+const VALID_REFERRAL_CODES = [
+    'BHAVIK-701-VIP',
+    'BHAVIK-702-VIP',
+    'BHAVIK-703-VIP',
+    'BHAVIK-704-VIP',
+    'BHAVIK-705-VIP',
+    'ITMBU-CSE-801',
+    'ITMBU-CSE-802',
+    'ITMBU-CSE-803',
+    'PBL-GOLD-901',
+    'PBL-GOLD-902'
+];
+
 // Transporter setup
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -28,7 +42,7 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-// Enrollment Regex Rule: 24 or 25 + C + 21, 22, 23, or 24 + 001-200 or 501-600
+// Enrollment Regex Rule: (24 or 25) + C + (21/22/23/24) + (001-200 or 501-600)
 const ENROLLMENT_REGEX = /^(24|25)C(21|22|23|24)(00[1-9]|0[1-9][0-9]|1[0-9]{2}|200|50[1-9]|5[1-9][0-9]|600)$/i;
 
 // Root Route - Serve index.html
@@ -39,25 +53,34 @@ app.get('/', (req, res) => {
 // Verification and Notification Endpoint
 app.post('/api/verify-and-download', async (req, res) => {
     try {
-        const { password, name, email, enrollment, sender } = req.body;
+        const { password, name, email, enrollment, referralCode } = req.body;
 
-        // 1. Password Verification
+        // 1. Master Password Verification
         if (!password || password.trim() !== ACCESS_PASSWORD) {
             return res.status(401).json({ 
                 success: false, 
-                error: 'Invalid Access Key! Please check the password provided by Bhavik or Diya.' 
+                error: 'Invalid Access Key! Please enter the authorized master password provided by Bhavik.' 
             });
         }
 
         // 2. Details Validation
-        if (!name || !email || !enrollment) {
+        if (!name || !email || !enrollment || !referralCode) {
             return res.status(400).json({ 
                 success: false, 
-                error: 'Please fill out all required details (Name, Email, Enrollment).' 
+                error: 'Please fill out all required details (Name, Email, Enrollment, and Referral Code).' 
             });
         }
 
-        // 3. Regex Validation
+        // 3. Referral Code Validation (1 of the 10 codes)
+        const cleanRefCode = referralCode.trim().toUpperCase();
+        if (!VALID_REFERRAL_CODES.includes(cleanRefCode)) {
+            return res.status(400).json({ 
+                success: false, 
+                error: 'Invalid Referral Code! Please contact Bhavik Patel directly to obtain an authorized referral code.' 
+            });
+        }
+
+        // 4. Enrollment Regex Validation
         const cleanEnrollment = enrollment.trim().toUpperCase();
         if (!ENROLLMENT_REGEX.test(cleanEnrollment)) {
             return res.status(400).json({ 
@@ -69,51 +92,51 @@ app.post('/api/verify-and-download', async (req, res) => {
         const clientIp = req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1';
         const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
 
-        // 4. Send Instant Email Alert to Bhavik
+        // 5. Send Instant Email Alert to Bhavik
         const mailOptions = {
-            from: `"PROJECT SHARE Portal" <${SMTP_USER}>`,
+            from: `"PROJECT SHARE Security" <${SMTP_USER}>`,
             to: NOTIFY_EMAIL,
-            subject: `🚨 [PROJECT SHARE ALERT] New Download by ${name} (${cleanEnrollment})`,
+            subject: `🚨 [PROJECT SHARE] Project Downloaded by ${name} (${cleanEnrollment})`,
             html: `
-            <div style="font-family: Arial, sans-serif; background: #f8fafc; padding: 25px; border-radius: 8px;">
-                <div style="max-width: 580px; margin: 0 auto; background: #ffffff; border-radius: 8px; border: 1px solid #e2e8f0; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.06);">
-                    <div style="background: #0c2340; color: #ffffff; padding: 20px 25px; text-align: center;">
-                        <h2 style="margin: 0; font-size: 20px; font-weight: bold; letter-spacing: 0.5px;">PROJECT SHARE - VAULT NOTIFICATION</h2>
-                        <p style="margin: 5px 0 0; font-size: 13px; color: #93c5fd;">Bhavik Patel &amp; Diya Matariya</p>
+            <div style="font-family: Arial, sans-serif; background: #070d19; padding: 25px; border-radius: 8px;">
+                <div style="max-width: 580px; margin: 0 auto; background: #0c1a30; border-radius: 8px; border: 1px solid #1a3052; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.5);">
+                    <div style="background: linear-gradient(135deg, #059669 0%, #0c2340 50%, #d97706 100%); color: #ffffff; padding: 20px 25px; text-align: center;">
+                        <h2 style="margin: 0; font-size: 20px; font-weight: bold; letter-spacing: 0.5px;">PROJECT SHARE - ACCESS ALERT</h2>
+                        <p style="margin: 5px 0 0; font-size: 13px; color: #fde68a;">Jay Swaminarayan • Bhavik Patel Repository</p>
                     </div>
-                    <div style="padding: 25px;">
-                        <p style="font-size: 14px; color: #334155; margin-top: 0;">
-                            <strong>Jay Swaminarayan Bhavik &amp; Diya</strong>,<br>
-                            A student has just verified their academic credentials and downloaded the <strong>PROJECT SHARE</strong> package:
+                    <div style="padding: 25px; color: #f8fafc;">
+                        <p style="font-size: 14px; color: #cbd5e1; margin-top: 0;">
+                            <strong>Jay Swaminarayan Bhavik</strong>,<br>
+                            A student has just unlocked your project vault with an authorized referral code and initiated download:
                         </p>
-                        <table style="width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 13.5px;">
-                            <tr style="border-bottom: 1px solid #e2e8f0;">
-                                <td style="padding: 10px; font-weight: bold; color: #64748b; width: 40%; background: #f8fafc;">Student Name:</td>
-                                <td style="padding: 10px; color: #0c2340; font-weight: bold;">${name}</td>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 13.5px; background: #071224; border-radius: 6px; overflow: hidden;">
+                            <tr style="border-bottom: 1px solid #1a3052;">
+                                <td style="padding: 10px 14px; font-weight: bold; color: #94a3b8; width: 40%;">Student Name:</td>
+                                <td style="padding: 10px 14px; color: #ffffff; font-weight: bold;">${name}</td>
                             </tr>
-                            <tr style="border-bottom: 1px solid #e2e8f0;">
-                                <td style="padding: 10px; font-weight: bold; color: #64748b; background: #f8fafc;">Email Address:</td>
-                                <td style="padding: 10px; color: #1e293b;"><a href="mailto:${email}" style="color: #2563eb;">${email}</a></td>
+                            <tr style="border-bottom: 1px solid #1a3052;">
+                                <td style="padding: 10px 14px; font-weight: bold; color: #94a3b8;">Email Address:</td>
+                                <td style="padding: 10px 14px; color: #38bdf8;"><a href="mailto:${email}" style="color: #38bdf8;">${email}</a></td>
                             </tr>
-                            <tr style="border-bottom: 1px solid #e2e8f0;">
-                                <td style="padding: 10px; font-weight: bold; color: #64748b; background: #f8fafc;">Enrollment Number:</td>
-                                <td style="padding: 10px; color: #059669; font-weight: bold; font-family: monospace; font-size: 15px;">${cleanEnrollment} (VERIFIED)</td>
+                            <tr style="border-bottom: 1px solid #1a3052;">
+                                <td style="padding: 10px 14px; font-weight: bold; color: #94a3b8;">Enrollment Number:</td>
+                                <td style="padding: 10px 14px; color: #10b981; font-weight: bold; font-family: monospace; font-size: 15px;">${cleanEnrollment} (VERIFIED)</td>
                             </tr>
-                            <tr style="border-bottom: 1px solid #e2e8f0;">
-                                <td style="padding: 10px; font-weight: bold; color: #64748b; background: #f8fafc;">Referred By:</td>
-                                <td style="padding: 10px; color: #1e293b;">${sender || 'Direct Share'}</td>
+                            <tr style="border-bottom: 1px solid #1a3052;">
+                                <td style="padding: 10px 14px; font-weight: bold; color: #94a3b8;">Referral Code Used:</td>
+                                <td style="padding: 10px 14px; color: #fbbf24; font-weight: bold; font-family: monospace; font-size: 14px;">🔑 ${cleanRefCode}</td>
                             </tr>
-                            <tr style="border-bottom: 1px solid #e2e8f0;">
-                                <td style="padding: 10px; font-weight: bold; color: #64748b; background: #f8fafc;">Timestamp (IST):</td>
-                                <td style="padding: 10px; color: #475569;">${timestamp}</td>
+                            <tr style="border-bottom: 1px solid #1a3052;">
+                                <td style="padding: 10px 14px; font-weight: bold; color: #94a3b8;">Timestamp (IST):</td>
+                                <td style="padding: 10px 14px; color: #e2e8f0;">${timestamp}</td>
                             </tr>
                             <tr>
-                                <td style="padding: 10px; font-weight: bold; color: #64748b; background: #f8fafc;">IP Address:</td>
-                                <td style="padding: 10px; color: #475569; font-family: monospace;">${clientIp}</td>
+                                <td style="padding: 10px 14px; font-weight: bold; color: #94a3b8;">Origin IP:</td>
+                                <td style="padding: 10px 14px; color: #e2e8f0; font-family: monospace;">${clientIp}</td>
                             </tr>
                         </table>
                     </div>
-                    <div style="background: #f1f5f9; padding: 12px 25px; text-align: center; font-size: 11px; color: #64748b;">
+                    <div style="background: #071224; padding: 12px 25px; text-align: center; font-size: 11px; color: #94a3b8; border-top: 1px solid #1a3052;">
                         ITM SLS Baroda University, Vadodara • School of Computer Science &amp; Engineering
                     </div>
                 </div>
@@ -125,17 +148,17 @@ app.post('/api/verify-and-download', async (req, res) => {
             if (err) {
                 console.error('[EMAIL NOTIFICATION NOTICE]', err.message);
             } else {
-                console.log(`[EMAIL DISPATCHED] Notified Bhavik of download by ${name} (${cleanEnrollment})`);
+                console.log(`[EMAIL DISPATCHED] Notified Bhavik of download by ${name} (${cleanEnrollment}) using ${cleanRefCode}`);
             }
         });
 
-        // 5. Append to download audit log file
+        // 6. Append to download audit log
         const logEntry = {
             timestamp,
             name,
             email,
             enrollment: cleanEnrollment,
-            sender: sender || 'Unknown',
+            referralCode: cleanRefCode,
             ip: clientIp
         };
 
@@ -178,5 +201,6 @@ app.listen(PORT, () => {
     console.log(`  Local URL   : http://localhost:${PORT}`);
     console.log(`  Password    : ${ACCESS_PASSWORD}`);
     console.log(`  Alert Email : ${NOTIFY_EMAIL}`);
+    console.log(`  Valid Codes : ${VALID_REFERRAL_CODES.length} codes active`);
     console.log('='.repeat(70));
 });

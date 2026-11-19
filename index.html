@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROJECT SHARE | Bhavik Patel & Diya Matariya</title>
+    <title>PROJECT SHARE | Bhavik Patel - ITM SLS Baroda University</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-color: #070d19;
-            --surface-color: #0c1a30;
-            --surface-border: #1a3052;
-            --primary-accent: #2563eb;
-            --primary-hover: #1d4ed8;
-            --success-color: #10b981;
-            --warning-color: #f59e0b;
-            --error-color: #ef4444;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
+            --bg-deep: #04070d;
+            --bg-surface: #0a111d;
+            --surface-card: #0f1929;
+            --border-glow: #1a2c47;
+            --gold-primary: #fbbf24;
+            --gold-gradient: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #d97706 100%);
+            --green-emerald: #10b981;
+            --green-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            --hero-gradient: linear-gradient(135deg, #10b981 0%, #059669 45%, #f59e0b 100%);
+            --text-pure: #ffffff;
+            --text-sub: #cbd5e1;
+            --text-muted: #8492a6;
+            --danger-color: #ef4444;
         }
 
         * {
@@ -33,458 +33,734 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            background-image:
-                radial-gradient(circle at 15% 20%, rgba(37, 99, 235, 0.12) 0%, transparent 40%),
-                radial-gradient(circle at 85% 80%, rgba(16, 185, 129, 0.10) 0%, transparent 40%);
-            color: var(--text-main);
+            background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(circle at 12% 15%, rgba(16, 185, 129, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 88% 85%, rgba(245, 158, 11, 0.12) 0%, transparent 45%),
+                linear-gradient(180deg, #04070d 0%, #070e1a 100%);
+            color: var(--text-pure);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
+            justify-content: flex-start;
+            padding: 30px 16px 50px;
         }
 
-        .vault-card {
-            background: var(--surface-color);
-            border: 1px solid var(--surface-border);
-            border-radius: 16px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(37, 99, 235, 0.08);
+        /* Top Navigation Switcher */
+        .portal-nav {
+            display: flex;
+            background: #081220;
+            border: 1px solid #1a2c47;
+            border-radius: 40px;
+            padding: 5px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+        }
+
+        .nav-btn {
+            background: transparent;
+            color: var(--text-muted);
+            border: none;
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-size: 13.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-btn.active {
+            background: var(--hero-gradient);
+            color: #04070d;
+            box-shadow: 0 2px 12px rgba(16, 185, 129, 0.35);
+        }
+
+        /* Main Container Card */
+        .portal-wrapper {
             width: 100%;
-            max-width: 540px;
+            max-width: 650px;
+            position: relative;
+        }
+
+        .luxury-card {
+            background: var(--surface-card);
+            border: 1px solid var(--border-glow);
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.65), 0 0 35px rgba(16, 185, 129, 0.08);
             overflow: hidden;
             position: relative;
-            animation: cardAppear 0.4s ease-out;
         }
 
-        @keyframes cardAppear {
-            from {
-                opacity: 0;
-                transform: translateY(20px) scale(0.98);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+        .gold-green-line {
+            height: 4px;
+            background: linear-gradient(90deg, #10b981 0%, #34d399 35%, #fbbf24 70%, #d97706 100%);
         }
 
-        .header-bar {
-            background: linear-gradient(135deg, #0f2444 0%, #0c1a30 100%);
-            padding: 30px 30px 24px;
-            border-bottom: 1px solid var(--surface-border);
+        /* Card Header */
+        .card-header {
+            padding: 32px 35px 22px;
+            background: linear-gradient(180deg, #0d1a2d 0%, #0a1322 100%);
+            border-bottom: 1px solid var(--border-glow);
             text-align: center;
-            position: relative;
         }
 
-        .badge-pill {
+        .badge-satsang {
             display: inline-flex;
             align-items: center;
-            background: rgba(37, 99, 235, 0.2);
-            border: 1px solid rgba(37, 99, 235, 0.4);
-            color: #93c5fd;
+            gap: 6px;
+            background: rgba(251, 191, 36, 0.12);
+            border: 1px solid rgba(251, 191, 36, 0.35);
+            color: var(--gold-primary);
             padding: 5px 14px;
             border-radius: 20px;
             font-size: 12px;
             font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
             margin-bottom: 12px;
+            letter-spacing: 0.3px;
         }
 
-        .header-bar h1 {
-            font-size: 26px;
+        .card-header h1 {
+            font-size: 30px;
             font-weight: 800;
             letter-spacing: -0.5px;
-            color: #ffffff;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 6px;
         }
 
-        .header-bar p {
+        .card-header p {
             font-size: 13.5px;
-            color: #38bdf8;
+            color: #34d399;
             font-weight: 600;
-            margin-bottom: 4px;
         }
 
-        .authors-tag {
-            margin-top: 8px;
+        .owner-chip {
+            margin-top: 10px;
             font-size: 12.5px;
-            color: #cbd5e1;
-            font-weight: 600;
+            color: var(--text-sub);
         }
 
-        .authors-tag span {
-            color: #fbbf24;
-            font-weight: 700;
+        .owner-chip strong {
+            color: var(--gold-primary);
         }
 
-        .body-section {
-            padding: 32px 30px;
+        /* Card Body */
+        .card-body {
+            padding: 30px 35px;
         }
 
-        .stage-box {
+        .view-panel {
             display: none;
         }
 
-        .stage-box.active {
+        .view-panel.active {
             display: block;
-            animation: fadeIn 0.3s ease-out;
+            animation: panelFadeIn 0.3s ease-out;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
+        @keyframes panelFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Form Controls */
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         .form-group label {
-            display: block;
-            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11.5px;
             font-weight: 700;
-            color: #cbd5e1;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.6px;
+            color: #94a3b8;
             margin-bottom: 8px;
         }
 
-        .input-control {
+        .input-dark {
             width: 100%;
             height: 48px;
-            background: #071224;
-            border: 1px solid var(--surface-border);
-            border-radius: 8px;
+            background: #060c16;
+            border: 1px solid #1a2c47;
+            border-radius: 10px;
             padding: 10px 16px;
             color: #ffffff;
             font-size: 14.5px;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
         }
 
-        .input-control:focus {
+        .input-dark:focus {
             outline: none;
-            border-color: var(--primary-accent);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
-            background: #091730;
+            border-color: var(--green-emerald);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+            background: #081120;
         }
 
-        .mono-input {
+        .mono-text {
             font-family: 'JetBrains Mono', monospace;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
         }
 
-        .validation-hint {
+        .hint-text {
             margin-top: 6px;
             font-size: 11.5px;
             line-height: 1.4;
-            transition: color 0.2s ease;
-        }
-
-        .hint-default {
             color: var(--text-muted);
         }
 
-        .hint-valid {
-            color: var(--success-color);
-            font-weight: 600;
+        .hint-success { color: var(--green-emerald) !important; font-weight: 600; }
+        .hint-error { color: var(--danger-color) !important; font-weight: 600; }
+
+        /* Notice Boxes */
+        .notice-box {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px dashed rgba(16, 185, 129, 0.35);
+            border-radius: 10px;
+            padding: 14px 18px;
+            font-size: 13px;
+            color: #a7f3d0;
+            line-height: 1.6;
+            margin-bottom: 22px;
         }
 
-        .hint-invalid {
-            color: var(--error-color);
-            font-weight: 600;
+        .referral-req-card {
+            background: rgba(251, 191, 36, 0.08);
+            border: 1px solid rgba(251, 191, 36, 0.25);
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-top: 8px;
+            font-size: 12px;
+            color: #fde68a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .btn-action {
+        /* Buttons */
+        .btn-luxury {
             width: 100%;
-            height: 50px;
-            background: linear-gradient(135deg, var(--primary-accent) 0%, var(--primary-hover) 100%);
-            color: #ffffff;
+            height: 52px;
+            background: var(--hero-gradient);
+            color: #04070d;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 15px;
-            font-weight: 700;
-            letter-spacing: 0.3px;
+            font-weight: 800;
+            letter-spacing: 0.4px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
-            transition: all 0.2s ease;
+            box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35);
+            transition: all 0.25s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
         }
 
-        .btn-action:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+        .btn-luxury:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(251, 191, 36, 0.4);
         }
 
-        .btn-action:disabled {
+        .btn-luxury:active {
+            transform: translateY(0);
+        }
+
+        .btn-luxury:disabled {
             opacity: 0.6;
             cursor: not-allowed;
             transform: none !important;
         }
 
-        .shake-animation {
-            animation: shake 0.4s cubic-bezier(.36, .07, .19, .97) both;
+        /* Shake Animation */
+        .shake {
+            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
         }
-
         @keyframes shake {
-
-            10%,
-            90% {
-                transform: translate3d(-2px, 0, 0);
-            }
-
-            20%,
-            80% {
-                transform: translate3d(4px, 0, 0);
-            }
-
-            30%,
-            50%,
-            70% {
-                transform: translate3d(-6px, 0, 0);
-            }
-
-            40%,
-            60% {
-                transform: translate3d(6px, 0, 0);
-            }
+            10%, 90% { transform: translate3d(-2px, 0, 0); }
+            20%, 80% { transform: translate3d(4px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+            40%, 60% { transform: translate3d(6px, 0, 0); }
         }
 
-        .info-card {
-            background: rgba(37, 99, 235, 0.08);
-            border: 1px dashed rgba(37, 99, 235, 0.35);
-            border-radius: 8px;
-            padding: 14px 16px;
-            margin-bottom: 22px;
-            font-size: 13px;
-            color: #93c5fd;
-            line-height: 1.6;
-        }
-
-        .success-box {
+        /* Success Download Screen */
+        .download-success {
             text-align: center;
             padding: 20px 10px;
         }
 
-        .success-icon {
-            width: 70px;
-            height: 70px;
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--success-color);
-            border: 2px solid var(--success-color);
+        .success-circle {
+            width: 72px;
+            height: 72px;
             border-radius: 50%;
+            background: rgba(16, 185, 129, 0.15);
+            border: 2px solid var(--green-emerald);
+            color: var(--green-emerald);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
-            margin: 0 auto 16px;
+            font-size: 34px;
+            margin: 0 auto 18px;
         }
 
-        .spinner-icon {
+        .package-included-box {
+            background: rgba(251, 191, 36, 0.06);
+            border: 1px solid rgba(251, 191, 36, 0.2);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: left;
+            margin: 20px 0;
+            font-size: 13px;
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+
+        .spinner {
             display: inline-block;
             width: 18px;
             height: 18px;
-            border: 2px solid #ffffff;
+            border: 2px solid #04070d;
             border-top-color: transparent;
             border-radius: 50%;
             animation: spin 0.6s linear infinite;
         }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
+        /* Viva Guide Styling */
+        .viva-card-item {
+            background: #08111e;
+            border: 1px solid #1a2c47;
+            border-radius: 12px;
+            margin-bottom: 14px;
+            overflow: hidden;
+            transition: all 0.25s ease;
         }
 
-        .footer-note {
-            margin-top: 24px;
+        .viva-card-item:hover {
+            border-color: var(--gold-primary);
+        }
+
+        .viva-q {
+            padding: 16px 20px;
+            font-size: 14.5px;
+            font-weight: 700;
+            color: #ffffff;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255,255,255,0.02);
+        }
+
+        .viva-q span.q-num {
+            color: var(--gold-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            margin-right: 8px;
+        }
+
+        .viva-ans {
+            display: none;
+            padding: 14px 20px 18px;
+            font-size: 13.5px;
+            color: #cbd5e1;
+            line-height: 1.6;
+            border-top: 1px solid #152238;
+            background: #050a14;
+        }
+
+        .viva-ans code {
+            background: #0f1f38;
+            color: #38bdf8;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+        }
+
+        .viva-badge-task {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--green-emerald);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .footer {
+            margin-top: 30px;
             text-align: center;
             font-size: 12px;
-            color: #64748b;
+            color: var(--text-muted);
             line-height: 1.6;
         }
     </style>
 </head>
-
 <body>
 
-    <div class="vault-card" id="vaultCard">
-        <!-- Header -->
-        <div class="header-bar">
-            <div class="badge-pill">🔒 Official Project Vault</div>
-            <h1>PROJECT SHARE</h1>
-            <p>Jay Swaminarayan • ITM SLS Baroda University</p>
-            <div class="authors-tag">
-                Project Collaborators: <span>Bhavik Patel</span> &amp; <span>Diya Matariya</span>
-            </div>
-        </div>
-
-        <div class="body-section">
-
-            <!-- STAGE 1: Password Gate -->
-            <div id="stage-password" class="stage-box active">
-                <div class="info-card">
-                    🙏 <strong>Jay Swaminarayan:</strong> Aa project file Bhavik Patel ane Diya Matariya na authorized
-                    submission mate chhe. Vault unlock karva mate passkey enter karo.
-                </div>
-
-                <div class="form-group">
-                    <label for="vault_password">Master Access Password</label>
-                    <input type="password" id="vault_password" class="input-control"
-                        placeholder="Enter vault password..." autocomplete="off">
-                    <div id="pwd_hint" class="validation-hint hint-default">
-                        Please enter the access password.
-                    </div>
-                </div>
-
-                <button type="button" class="btn-action" onclick="verifyPassword()">
-                    Unlock Project Vault &rarr;
-                </button>
-            </div>
-
-            <!-- STAGE 2: Student Details Gate -->
-            <div id="stage-details" class="stage-box">
-                <div class="info-card">
-                    📋 <strong>Student Identity Verification:</strong> Project file download karva mate potani details
-                    submit karo.
-                </div>
-
-                <div class="form-group">
-                    <label for="student_name">Student Full Name *</label>
-                    <input type="text" id="student_name" class="input-control" placeholder="e.g., Bhavikkumar Patel">
-                </div>
-
-                <div class="form-group">
-                    <label for="student_email">Student Email Address *</label>
-                    <input type="email" id="student_email" class="input-control"
-                        placeholder="e.g., student@itmslsbu.ac.in">
-                </div>
-
-                <div class="form-group">
-                    <label for="student_enrollment">Enrollment Number *</label>
-                    <input type="text" id="student_enrollment" class="input-control mono-input"
-                        placeholder="e.g., 24C21003 or 25C21503" maxlength="8"
-                        oninput="validateEnrollmentLive(this.value)">
-                    <div id="enrollment_hint" class="validation-hint hint-default">
-                        Format: (24 or 25) + C(21/22/23/24) + (001-200 or 501-600)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="link_sender">Who shared this link with you? *</label>
-                    <select id="link_sender" class="input-control" style="cursor: pointer;">
-                        <option value="Bhavikkumar Patel">Bhavikkumar Patel</option>
-                        <option value="Diya Matariya">Diya Matariya</option>
-                        <option value="Class WhatsApp Group">Class WhatsApp Group</option>
-                        <option value="Classmate / Peer">Classmate / Peer</option>
-                    </select>
-                </div>
-
-                <button type="button" id="btn-submit-download" class="btn-action" onclick="submitAndDownload()">
-                    <span id="btn-spinner" class="spinner-icon" style="display: none;"></span>
-                    <span id="btn-text">Authorize &amp; Download PROJECT SHARE (ZIP) &darr;</span>
-                </button>
-            </div>
-
-            <!-- STAGE 3: Success Screen -->
-            <div id="stage-success" class="stage-box">
-                <div class="success-box">
-                    <div class="success-icon">✓</div>
-                    <h2 style="font-size: 20px; font-weight: 800; color: #ffffff; margin-bottom: 8px;">Download
-                        Authorized!</h2>
-                    <p style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
-                        Sahajanand Swami ni kripa thi, PROJECT-SHARE.zip download start thai gayu chhe.
-                    </p>
-
-                    <div
-                        style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px; padding: 14px; font-size: 12.5px; color: #a7f3d0; text-align: left; margin-bottom: 20px;">
-                        <strong>📦 Package Contents:</strong><br>
-                        • Python Flask WSGI Portal (`app.py`, `models.py`)<br>
-                        • MySQL + SQLite Database Config (`config.py`, `database_setup.sql`)<br>
-                        • Real Razorpay Test Sandbox Checkout (`templates/payment.html`)<br>
-                        • All HTML Templates &amp; Static Assets
-                    </div>
-
-                    <a href="PROJECT-SHARE.zip" download="PROJECT-SHARE.zip" class="btn-action"
-                        style="text-decoration: none;">
-                        Click here if download didn't start automatically &darr;
-                    </a>
-                </div>
-            </div>
-
-        </div>
+    <!-- Top Navigation Switcher -->
+    <div class="portal-nav">
+        <button type="button" class="nav-btn active" id="tab-portal" onclick="switchMainTab('portal')">
+            🚀 Download Vault
+        </button>
+        <button type="button" class="nav-btn" id="tab-viva" onclick="switchMainTab('viva')">
+            🎓 Viva Voce Cheat-Sheet
+        </button>
     </div>
 
-    <div class="footer-note">
-        Jay Swaminarayan • ITM SLS Baroda University, Vadodara<br>
-        B.Tech Semester-5 • Computer Science &amp; Engineering • AY 2026-2027
+    <div class="portal-wrapper">
+        <div class="luxury-card" id="mainCard">
+            <div class="gold-green-line"></div>
+
+            <!-- Header -->
+            <div class="card-header">
+                <div class="badge-satsang">
+                    <span>🙏</span> Jay Swaminarayan • Academic Distribution
+                </div>
+                <h1>PROJECT SHARE</h1>
+                <p>Enterprise Web Portal &amp; E-Commerce Architecture</p>
+                <div class="owner-chip">
+                    Repository Architect: <strong>Bhavikkumar Patel</strong> • ITM SLS BU Vadodara
+                </div>
+            </div>
+
+            <div class="card-body">
+
+                <!-- ============================================== -->
+                <!-- SECTION 1: DOWNLOAD VAULT                      -->
+                <!-- ============================================== -->
+                <div id="section-portal" class="view-panel active">
+                    
+                    <!-- Stage 1: Password Gate -->
+                    <div id="stage-pass" class="stage-sub active">
+                        <div class="notice-box">
+                            🔐 <strong>Encrypted Access Protocol:</strong> Aa repository password-protected chhe. Codebase access karva mate authorized access passkey enter karo.
+                        </div>
+
+                        <div class="form-group">
+                            <label for="vault_password">Master Access Password</label>
+                            <input type="password" id="vault_password" class="input-dark mono-text" placeholder="Enter vault password..." autocomplete="off">
+                            <div id="pass_hint" class="hint-text">Master password required to unlock identity gate.</div>
+                        </div>
+
+                        <button type="button" class="btn-luxury" onclick="unlockPassword()">
+                            Unlock Project Vault &rarr;
+                        </button>
+                    </div>
+
+                    <!-- Stage 2: Verification Details Gate -->
+                    <div id="stage-details" class="stage-sub" style="display: none;">
+                        <div class="notice-box">
+                            📋 <strong>Academic Identity Verification:</strong> Project file download karva mate potana credentials ane authorized referral code fill karo.
+                        </div>
+
+                        <div class="form-group">
+                            <label for="student_name">Student Full Name *</label>
+                            <input type="text" id="student_name" class="input-dark" placeholder="e.g., Bhavikkumar Patel">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="student_email">Student Email Address *</label>
+                            <input type="email" id="student_email" class="input-dark" placeholder="e.g., student@itmslsbu.ac.in">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="student_enrollment">
+                                <span>Enrollment Number *</span>
+                                <span style="color: var(--gold-primary);">B.Tech CSE</span>
+                            </label>
+                            <input type="text" id="student_enrollment" class="input-dark mono-text" placeholder="e.g., 24C21003 or 25C21503" maxlength="8" oninput="verifyEnrollment(this.value)">
+                            <div id="enroll_hint" class="hint-text">Format: (24 or 25) + C(21/22/23/24) + (001-200 or 501-600)</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="referral_code">
+                                <span>Authorized Referral Code *</span>
+                                <span style="color: var(--gold-primary);">Required</span>
+                            </label>
+                            <input type="text" id="referral_code" class="input-dark mono-text" placeholder="e.g., BHAVIK-701-VIP" oninput="verifyReferralLive(this.value)">
+                            <div id="ref_hint" class="hint-text">User must ask Bhavik Patel for an authorized referral code.</div>
+                            
+                            <div class="referral-req-card">
+                                <span>🔑</span>
+                                <div>
+                                    <strong>Don't have a referral code?</strong> Contact Bhavik Patel (<code>bhavik.itmbu@gmail.com</code>) to obtain an authorized passkey.
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" id="btn-download-action" class="btn-luxury" onclick="handleAuthorizeAndDownload()">
+                            <span id="btn-spin" class="spinner" style="display: none;"></span>
+                            <span id="btn-label">Authorize &amp; Download PROJECT SHARE (ZIP) &darr;</span>
+                        </button>
+                    </div>
+
+                    <!-- Stage 3: Success Download Screen -->
+                    <div id="stage-done" class="stage-sub" style="display: none;">
+                        <div class="download-success">
+                            <div class="success-circle">✓</div>
+                            <h2 style="font-size: 22px; font-weight: 800; color: #ffffff; margin-bottom: 6px;">Download Authorized!</h2>
+                            <p style="font-size: 13.5px; color: var(--text-sub); line-height: 1.6;">
+                                Credentials verified. The clean codebase (<code>PROJECT-SHARE.zip</code>) download has initiated.
+                            </p>
+
+                            <div class="package-included-box">
+                                <strong style="color: var(--gold-primary);">📦 Clean Codebase Contents Included:</strong><br>
+                                • Python Flask WSGI Backend (<code>app.py</code>, <code>models.py</code>)<br>
+                                • XAMPP MySQL + SQLite Auto-failover Engine (<code>config.py</code>, <code>database_setup.sql</code>)<br>
+                                • Official Razorpay Standard Checkout Integration (<code>templates/payment.html</code>)<br>
+                                • Automated Gmail SMTP Security Alerts (<code>utils/email_service.py</code>)<br>
+                                • Bootstrap 3 Front-end Assets, Templates &amp; Run Scripts<br>
+                                <span style="font-size: 11px; color: #94a3b8;">* Handbooks and presentation decks have been excluded.</span>
+                            </div>
+
+                            <a href="PROJECT-SHARE.zip" download="PROJECT-SHARE.zip" class="btn-luxury" style="text-decoration: none;">
+                                Click here if download didn't start automatically &darr;
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ============================================== -->
+                <!-- SECTION 2: VIVA VOCE CHEAT-SHEET               -->
+                <!-- ============================================== -->
+                <div id="section-viva" class="view-panel">
+                    <div class="notice-box" style="background: rgba(251, 191, 36, 0.08); border-color: rgba(251, 191, 36, 0.35); color: #fde68a;">
+                        🎓 <strong>B.Tech CSE Viva-Voce Master Guide:</strong> Essential questions and model technical answers to ace your laboratory evaluation.
+                    </div>
+
+                    <!-- Q1 -->
+                    <div class="viva-card-item">
+                        <div class="viva-q" onclick="toggleVivaAns(this)">
+                            <div>
+                                <span class="q-num">Q1</span>
+                                What is Flask and how does it handle request routing?
+                            </div>
+                            <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                        </div>
+                        <div class="viva-ans">
+                            <span class="viva-badge-task">Task 1: Architecture</span><br>
+                            Flask is a lightweight Python WSGI microframework based on Werkzeug and Jinja2. Routing is handled via route decorators like <code>@app.route('/path', methods=['GET', 'POST'])</code>. When an incoming HTTP request hits the WSGI server, Werkzeug matches the URL rule against registered endpoints and dispatches it to the corresponding Python view function.
+                        </div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="viva-card-item">
+                        <div class="viva-q" onclick="toggleVivaAns(this)">
+                            <div>
+                                <span class="q-num">Q2</span>
+                                What is the purpose of Jinja2 Template Inheritance?
+                            </div>
+                            <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                        </div>
+                        <div class="viva-ans">
+                            <span class="viva-badge-task">Task 1: Template Engine</span><br>
+                            Template inheritance enforces the DRY (Don't Repeat Yourself) principle. A centralized master skeleton (<code>base.html</code>) defines the navigation bar, stylesheets, scripts, and footer. Child templates extend it via <code>{% extends "base.html" %}</code> and override isolated content blocks (<code>{% block content %}</code>), drastically reducing code redundancy.
+                        </div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="viva-card-item">
+                        <div class="viva-q" onclick="toggleVivaAns(this)">
+                            <div>
+                                <span class="q-num">Q3</span>
+                                How does the application connect to MySQL in XAMPP?
+                            </div>
+                            <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                        </div>
+                        <div class="viva-ans">
+                            <span class="viva-badge-task">Task 3: Database Layer</span><br>
+                            The application uses <code>Flask-SQLAlchemy</code> with the <code>PyMySQL</code> DBAPI driver. The URI is <code>mysql+pymysql://root:@localhost:3306/majestic_db</code>. Furthermore, <code>config.py</code> implements a zero-downtime resilience check: if XAMPP MySQL is unreachable, it automatically falls back to local SQLite (<code>pbl_framework.db</code>) to prevent evaluation crashes.
+                        </div>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="viva-card-item">
+                        <div class="viva-q" onclick="toggleVivaAns(this)">
+                            <div>
+                                <span class="q-num">Q4</span>
+                                Why is password hashing critical, and which algorithm is used?
+                            </div>
+                            <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                        </div>
+                        <div class="viva-ans">
+                            <span class="viva-badge-task">Task 2: Authentication Security</span><br>
+                            Plaintext passwords must never be stored because database breaches expose user credentials. Hashing is a one-way mathematical function. We utilize <code>werkzeug.security.generate_password_hash()</code>, which applies salted cryptographic algorithms (<code>scrypt:32768:8:1</code> or <code>pbkdf2:sha256</code>) to neutralize dictionary and rainbow-table attacks.
+                        </div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="viva-card-item">
+                        <div class="viva-q" onclick="toggleVivaAns(this)">
+                            <div>
+                                <span class="q-num">Q5</span>
+                                How was Task 4 (Automated Email Notification) engineered?
+                            </div>
+                            <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                        </div>
+                        <div class="viva-ans">
+                            <span class="viva-badge-task">Task 4: Security Notification</span><br>
+                            Implemented in <code>utils/email_service.py</code> using Python's standard <code>smtplib</code> library. Connects to Gmail SMTP relay (<code>smtp.gmail.com</code>, port 587) with <code>STARTTLS</code> transport encryption. If login credentials match, a "Successful Login" confirmation is dispatched. If credentials fail, an urgent "Intrusion Alert" is dispatched. All events are logged into <code>login_audit_logs</code>.
+                        </div>
+                    </div>
+
+                    <!-- Q6 -->
+                    <div class="viva-card-item">
+                        <div class="viva-q" onclick="toggleVivaAns(this)">
+                            <div>
+                                <span class="q-num">Q6</span>
+                                How does the Razorpay Payment Gateway integration work?
+                            </div>
+                            <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                        </div>
+                        <div class="viva-ans">
+                            <span class="viva-badge-task">Task 5: Payment Gateway</span><br>
+                            1. <strong>Order Initiation:</strong> Client selects package; Flask calls <code>razorpay.Client.order.create()</code> converting INR to paise.<br>
+                            2. <strong>Modal Checkout:</strong> <code>checkout.js</code> launches the official Razorpay popup for UPI / Card / Netbanking.<br>
+                            3. <strong>Signature Verification:</strong> Razorpay returns <code>payment_id</code>, <code>order_id</code>, and signature token. The backend verifies HMAC-SHA256 integrity before database persistence and generating digital tax invoices.
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="footer">
+            Jay Swaminarayan • ITM SLS Baroda University, Vadodara<br>
+            Department of Computer Science &amp; Engineering • AY 2026-2027
+        </div>
     </div>
 
     <script type="text/javascript">
+        // Master Passkey
         const VAULT_PASS = 'PBL-Submission-2026';
+        
+        // 10 Authorized Referral Codes generated for Bhavik Patel
+        const AUTHORIZED_CODES = [
+            'BHAVIK-701-VIP',
+            'BHAVIK-702-VIP',
+            'BHAVIK-703-VIP',
+            'BHAVIK-704-VIP',
+            'BHAVIK-705-VIP',
+            'ITMBU-CSE-801',
+            'ITMBU-CSE-802',
+            'ITMBU-CSE-803',
+            'PBL-GOLD-901',
+            'PBL-GOLD-902'
+        ];
 
-        // Regex: 24 or 25 + C + 21, 22, 23, or 24 + 001-200 or 501-600
+        // Regex: (24 or 25) + C + (21/22/23/24) + (001-200 or 501-600)
         const ENROLL_REGEX = /^(24|25)C(21|22|23|24)(00[1-9]|0[1-9][0-9]|1[0-9]{2}|200|50[1-9]|5[1-9][0-9]|600)$/i;
 
-        // Stage 1: Verify Password
-        function verifyPassword() {
-            const pwdInput = document.getElementById('vault_password');
-            const hint = document.getElementById('pwd_hint');
-            const card = document.getElementById('vaultCard');
+        // Switch Tabs (Vault vs Viva)
+        function switchMainTab(tab) {
+            document.getElementById('tab-portal').classList.remove('active');
+            document.getElementById('tab-viva').classList.remove('active');
+            document.getElementById('section-portal').classList.remove('active');
+            document.getElementById('section-viva').classList.remove('active');
 
-            if (pwdInput.value.trim() === VAULT_PASS) {
-                document.getElementById('stage-password').classList.remove('active');
-                document.getElementById('stage-details').classList.add('active');
+            if (tab === 'portal') {
+                document.getElementById('tab-portal').classList.add('active');
+                document.getElementById('section-portal').classList.add('active');
             } else {
-                card.classList.remove('shake-animation');
-                void card.offsetWidth;
-                card.classList.add('shake-animation');
-
-                hint.className = 'validation-hint hint-invalid';
-                hint.innerText = '❌ Incorrect password! Please ask Bhavik or Diya for the passkey.';
-                pwdInput.focus();
+                document.getElementById('tab-viva').classList.add('active');
+                document.getElementById('section-viva').classList.add('active');
             }
         }
 
-        // Live Regex Checking
-        function validateEnrollmentLive(val) {
+        // Toggle Viva Q&A Accordion
+        function toggleVivaAns(el) {
+            const ans = el.nextElementSibling;
+            const icon = el.querySelector('span:last-child');
+            if (ans.style.display === 'block') {
+                ans.style.display = 'none';
+                icon.innerText = '+';
+            } else {
+                ans.style.display = 'block';
+                icon.innerText = '−';
+            }
+        }
+
+        // Stage 1: Unlock with Password
+        function unlockPassword() {
+            const pwd = document.getElementById('vault_password').value.trim();
+            const hint = document.getElementById('pass_hint');
+            const card = document.getElementById('mainCard');
+
+            if (pwd === VAULT_PASS) {
+                document.getElementById('stage-pass').style.display = 'none';
+                document.getElementById('stage-details').style.display = 'block';
+            } else {
+                card.classList.remove('shake');
+                void card.offsetWidth;
+                card.classList.add('shake');
+                hint.className = 'hint-text hint-error';
+                hint.innerText = '❌ Incorrect Master Password! Please ask Bhavik Patel for passkey.';
+                document.getElementById('vault_password').focus();
+            }
+        }
+
+        // Live Enrollment Verification
+        function verifyEnrollment(val) {
             const clean = val.trim().toUpperCase();
-            const hint = document.getElementById('enrollment_hint');
+            const hint = document.getElementById('enroll_hint');
 
             if (!clean) {
-                hint.className = 'validation-hint hint-default';
+                hint.className = 'hint-text';
                 hint.innerText = 'Format: (24 or 25) + C(21/22/23/24) + (001-200 or 501-600)';
                 return false;
             }
 
             if (ENROLL_REGEX.test(clean)) {
-                hint.className = 'validation-hint hint-valid';
+                hint.className = 'hint-text hint-success';
                 hint.innerText = '✓ Valid ITM SLS BU Enrollment Number (' + clean + ')';
                 return true;
             } else {
-                hint.className = 'validation-hint hint-invalid';
-                hint.innerText = '⚠️ Invalid! Must be e.g., 24C21003 or 25C21503 (001-200 or 501-600)';
+                hint.className = 'hint-text hint-error';
+                hint.innerText = '⚠️ Invalid! e.g., 24C21003 or 25C21503 (001-200 or 501-600)';
                 return false;
             }
         }
 
-        // Submit & Download Action
-        async function submitAndDownload() {
+        // Live Referral Code Verification
+        function verifyReferralLive(val) {
+            const code = val.trim().toUpperCase();
+            const hint = document.getElementById('ref_hint');
+
+            if (!code) {
+                hint.className = 'hint-text';
+                hint.innerText = 'User must ask Bhavik Patel for an authorized referral code.';
+                return false;
+            }
+
+            if (AUTHORIZED_CODES.includes(code)) {
+                hint.className = 'hint-text hint-success';
+                hint.innerText = '✓ Authorized Referral Passkey Verified (' + code + ')';
+                return true;
+            } else {
+                hint.className = 'hint-text hint-error';
+                hint.innerText = '⚠️ Unrecognized Code. Contact Bhavik Patel to receive your passkey.';
+                return false;
+            }
+        }
+
+        // Handle Download & Email Notification
+        async function handleAuthorizeAndDownload() {
             const name = document.getElementById('student_name').value.trim();
             const email = document.getElementById('student_email').value.trim();
             const enrollment = document.getElementById('student_enrollment').value.trim().toUpperCase();
-            const sender = document.getElementById('link_sender').value;
+            const referralCode = document.getElementById('referral_code').value.trim().toUpperCase();
 
             if (!name) { alert('Please enter your full name.'); return; }
             if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
@@ -492,17 +768,22 @@
                 alert('Invalid Enrollment Number! Must be 24 or 25 + C21/C22/C23/C24 + 001-200 or 501-600 (e.g. 24C21003 or 25C21503).');
                 return;
             }
+            if (!AUTHORIZED_CODES.includes(referralCode)) {
+                alert('Invalid Referral Code! Please ask Bhavik Patel for a valid authorized referral code.');
+                return;
+            }
 
-            const btn = document.getElementById('btn-submit-download');
-            const spinner = document.getElementById('btn-spinner');
-            const text = document.getElementById('btn-text');
+            const btn = document.getElementById('btn-download-action');
+            const spin = document.getElementById('btn-spin');
+            const label = document.getElementById('btn-label');
 
             btn.disabled = true;
-            spinner.style.display = 'inline-block';
-            text.innerText = 'Verifying credentials...';
+            spin.style.display = 'inline-block';
+            label.innerText = 'Authorizing & Dispatching Notice...';
 
             try {
-                const response = await fetch('/api/verify-and-download', {
+                // 1. Post to Express backend
+                fetch('/api/verify-and-download', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -510,32 +791,43 @@
                         name: name,
                         email: email,
                         enrollment: enrollment,
-                        sender: sender
+                        referralCode: referralCode
                     })
-                });
+                }).catch(e => console.log('Node server offline, static alert fallback.'));
 
-                const data = await response.json();
+                // 2. Dual Cloud Dispatch to Bhavik's Email (Works on GitHub Pages statically)
+                fetch('https://formsubmit.co/ajax/bhavik.itmbu@gmail.com', {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        _subject: `🚨 [PROJECT SHARE] Downloaded by ${name} (${enrollment}) [${referralCode}]`,
+                        "Student Name": name,
+                        "Student Email": email,
+                        "Enrollment Number": enrollment,
+                        "Referral Code Used": referralCode,
+                        "Timestamp": new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+                        "Project": "PROJECT SHARE (B.Tech CSE Semester-5)"
+                    })
+                }).catch(err => console.log('Static alert notice:', err));
 
-                if (data.success) {
-                    triggerDirectDownload();
-                    document.getElementById('stage-details').classList.remove('active');
-                    document.getElementById('stage-success').classList.add('active');
-                } else {
-                    alert(data.error || 'Verification failed.');
-                    btn.disabled = false;
-                    spinner.style.display = 'none';
-                    text.innerText = 'Authorize & Download PROJECT SHARE (ZIP) ↓';
-                }
+                // 3. Trigger Download of clean PROJECT-SHARE.zip
+                setTimeout(() => {
+                    triggerDownload();
+                    document.getElementById('stage-details').style.display = 'none';
+                    document.getElementById('stage-done').style.display = 'block';
+                }, 600);
+
             } catch (err) {
-                // Client-side fallback if hosted on static GitHub Pages
-                console.warn('Direct static download mode:', err);
-                triggerDirectDownload();
-                document.getElementById('stage-details').classList.remove('active');
-                document.getElementById('stage-success').classList.add('active');
+                triggerDownload();
+                document.getElementById('stage-details').style.display = 'none';
+                document.getElementById('stage-done').style.display = 'block';
             }
         }
 
-        function triggerDirectDownload() {
+        function triggerDownload() {
             const a = document.createElement('a');
             a.href = 'PROJECT-SHARE.zip';
             a.download = 'PROJECT-SHARE.zip';
@@ -544,11 +836,11 @@
             document.body.removeChild(a);
         }
 
-        document.getElementById('vault_password').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') verifyPassword();
+        // Enter key trigger on password input
+        document.getElementById('vault_password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') unlockPassword();
         });
     </script>
 
 </body>
-
 </html>
