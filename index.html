@@ -15,8 +15,10 @@
             --surface-card: #0f1929;
             --border-glow: #1a2c47;
             --gold-primary: #fbbf24;
+            --gold-secondary: #f59e0b;
             --gold-gradient: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #d97706 100%);
             --green-emerald: #10b981;
+            --green-bright: #34d399;
             --green-gradient: linear-gradient(135deg, #10b981 0%, #059669 100%);
             --hero-gradient: linear-gradient(135deg, #10b981 0%, #059669 45%, #f59e0b 100%);
             --text-pure: #ffffff;
@@ -56,13 +58,14 @@
             padding: 5px;
             margin-bottom: 24px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            gap: 6px;
         }
 
         .nav-btn {
             background: transparent;
             color: var(--text-muted);
             border: none;
-            padding: 10px 22px;
+            padding: 10px 24px;
             border-radius: 30px;
             font-size: 13.5px;
             font-weight: 700;
@@ -76,14 +79,15 @@
         .nav-btn.active {
             background: var(--hero-gradient);
             color: #04070d;
-            box-shadow: 0 2px 12px rgba(16, 185, 129, 0.35);
+            box-shadow: 0 2px 14px rgba(16, 185, 129, 0.35);
         }
 
         /* Main Container Card */
         .portal-wrapper {
             width: 100%;
-            max-width: 650px;
+            max-width: 740px;
             position: relative;
+            transition: max-width 0.3s ease;
         }
 
         .luxury-card {
@@ -251,72 +255,55 @@
             background: var(--hero-gradient);
             color: #04070d;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 15px;
             font-weight: 800;
-            letter-spacing: 0.4px;
             cursor: pointer;
-            box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35);
-            transition: all 0.25s ease;
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .btn-luxury:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 24px rgba(251, 191, 36, 0.4);
-        }
-
-        .btn-luxury:active {
-            transform: translateY(0);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
         }
 
         .btn-luxury:disabled {
-            opacity: 0.6;
+            opacity: 0.65;
             cursor: not-allowed;
-            transform: none !important;
+            transform: none;
         }
 
-        /* Shake Animation */
-        .shake {
-            animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
-        }
-        @keyframes shake {
-            10%, 90% { transform: translate3d(-2px, 0, 0); }
-            20%, 80% { transform: translate3d(4px, 0, 0); }
-            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
-            40%, 60% { transform: translate3d(6px, 0, 0); }
-        }
-
-        /* Success Download Screen */
         .download-success {
             text-align: center;
-            padding: 20px 10px;
+            padding: 20px 0;
         }
 
         .success-circle {
-            width: 72px;
-            height: 72px;
+            width: 68px;
+            height: 68px;
             border-radius: 50%;
             background: rgba(16, 185, 129, 0.15);
             border: 2px solid var(--green-emerald);
             color: var(--green-emerald);
+            font-size: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 34px;
-            margin: 0 auto 18px;
+            margin: 0 auto 16px;
         }
 
         .package-included-box {
-            background: rgba(251, 191, 36, 0.06);
-            border: 1px solid rgba(251, 191, 36, 0.2);
-            border-radius: 10px;
-            padding: 16px;
+            background: #081220;
+            border: 1px solid #1a2c47;
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin: 20px 0 24px;
             text-align: left;
-            margin: 20px 0;
             font-size: 13px;
             color: #cbd5e1;
             line-height: 1.7;
@@ -334,22 +321,100 @@
         @keyframes spin { to { transform: rotate(360deg); } }
 
         /* Viva Guide Styling */
+        .viva-filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .viva-filter-btn {
+            background: #081220;
+            border: 1px solid #1a2c47;
+            color: var(--text-muted);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .viva-filter-btn:hover {
+            border-color: var(--green-emerald);
+            color: #ffffff;
+        }
+
+        .viva-filter-btn.active {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--green-emerald);
+            color: #34d399;
+        }
+
+        .viva-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .viva-toggle-btn {
+            background: transparent;
+            border: 1px solid #1a2c47;
+            color: var(--gold-primary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 11.5px;
+            font-weight: 600;
+        }
+        .viva-toggle-btn:hover {
+            background: rgba(251, 191, 36, 0.1);
+        }
+
+        .viva-section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 18px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(251, 191, 36, 0.1) 100%);
+            border: 1px solid rgba(16, 185, 129, 0.35);
+            border-radius: 12px;
+            margin: 22px 0 12px;
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 0.3px;
+        }
+
+        .viva-sec-badge {
+            background: var(--gold-gradient);
+            color: #04070d;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+
         .viva-card-item {
             background: #08111e;
             border: 1px solid #1a2c47;
             border-radius: 12px;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             overflow: hidden;
             transition: all 0.25s ease;
         }
 
         .viva-card-item:hover {
             border-color: var(--gold-primary);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
         }
 
         .viva-q {
-            padding: 16px 20px;
-            font-size: 14.5px;
+            padding: 14px 18px;
+            font-size: 14px;
             font-weight: 700;
             color: #ffffff;
             cursor: pointer;
@@ -357,21 +422,22 @@
             justify-content: space-between;
             align-items: center;
             background: rgba(255,255,255,0.02);
+            user-select: none;
         }
 
         .viva-q span.q-num {
             color: var(--gold-primary);
             font-family: 'JetBrains Mono', monospace;
-            font-size: 13px;
+            font-size: 12.5px;
             margin-right: 8px;
         }
 
         .viva-ans {
             display: none;
-            padding: 14px 20px 18px;
+            padding: 14px 18px 18px;
             font-size: 13.5px;
             color: #cbd5e1;
-            line-height: 1.6;
+            line-height: 1.65;
             border-top: 1px solid #152238;
             background: #050a14;
         }
@@ -413,7 +479,7 @@
             🚀 Download Vault
         </button>
         <button type="button" class="nav-btn" id="tab-viva" onclick="switchMainTab('viva')">
-            🎓 Viva Voce Cheat-Sheet
+            🎓 Viva Voce Master Guide (40 Qs)
         </button>
     </div>
 
@@ -532,102 +598,558 @@
                 </div>
 
                 <!-- ============================================== -->
-                <!-- SECTION 2: VIVA VOCE CHEAT-SHEET               -->
+                <!-- SECTION 2: VIVA VOCE CHEAT-SHEET (40 QUESTIONS)-->
                 <!-- ============================================== -->
                 <div id="section-viva" class="view-panel">
                     <div class="notice-box" style="background: rgba(251, 191, 36, 0.08); border-color: rgba(251, 191, 36, 0.35); color: #fde68a;">
-                        🎓 <strong>B.Tech CSE Viva-Voce Master Guide:</strong> Essential questions and model technical answers to ace your laboratory evaluation.
+                        🎓 <strong>B.Tech CSE Viva-Voce Master Guide (40 Questions across 5 Sections):</strong> Model technical answers designed for University laboratory evaluation.
                     </div>
 
-                    <!-- Q1 -->
-                    <div class="viva-card-item">
-                        <div class="viva-q" onclick="toggleVivaAns(this)">
-                            <div>
-                                <span class="q-num">Q1</span>
-                                What is Flask and how does it handle request routing?
-                            </div>
-                            <span style="color: var(--gold-primary); font-size: 18px;">+</span>
-                        </div>
-                        <div class="viva-ans">
-                            <span class="viva-badge-task">Task 1: Architecture</span><br>
-                            Flask is a lightweight Python WSGI microframework based on Werkzeug and Jinja2. Routing is handled via route decorators like <code>@app.route('/path', methods=['GET', 'POST'])</code>. When an incoming HTTP request hits the WSGI server, Werkzeug matches the URL rule against registered endpoints and dispatches it to the corresponding Python view function.
-                        </div>
+                    <!-- Category Filters -->
+                    <div class="viva-filter-bar">
+                        <button type="button" class="viva-filter-btn active" onclick="filterCategory('all', this)">All (40 Qs)</button>
+                        <button type="button" class="viva-filter-btn" onclick="filterCategory('sec1', this)">1. Flask &amp; WSGI (8)</button>
+                        <button type="button" class="viva-filter-btn" onclick="filterCategory('sec2', this)">2. Front-End &amp; UI (7)</button>
+                        <button type="button" class="viva-filter-btn" onclick="filterCategory('sec3', this)">3. MySQL &amp; DB (8)</button>
+                        <button type="button" class="viva-filter-btn" onclick="filterCategory('sec4', this)">4. Security &amp; Auth (8)</button>
+                        <button type="button" class="viva-filter-btn" onclick="filterCategory('sec5', this)">5. Razorpay &amp; SMTP (9)</button>
                     </div>
 
-                    <!-- Q2 -->
-                    <div class="viva-card-item">
-                        <div class="viva-q" onclick="toggleVivaAns(this)">
-                            <div>
-                                <span class="q-num">Q2</span>
-                                What is the purpose of Jinja2 Template Inheritance?
-                            </div>
-                            <span style="color: var(--gold-primary); font-size: 18px;">+</span>
-                        </div>
-                        <div class="viva-ans">
-                            <span class="viva-badge-task">Task 1: Template Engine</span><br>
-                            Template inheritance enforces the DRY (Don't Repeat Yourself) principle. A centralized master skeleton (<code>base.html</code>) defines the navigation bar, stylesheets, scripts, and footer. Child templates extend it via <code>{% extends "base.html" %}</code> and override isolated content blocks (<code>{% block content %}</code>), drastically reducing code redundancy.
+                    <div class="viva-controls">
+                        <span>Click any question to reveal answer</span>
+                        <div style="display: flex; gap: 8px;">
+                            <button type="button" class="viva-toggle-btn" onclick="toggleAllViva(true)">Expand All</button>
+                            <button type="button" class="viva-toggle-btn" onclick="toggleAllViva(false)">Collapse All</button>
                         </div>
                     </div>
 
-                    <!-- Q3 -->
-                    <div class="viva-card-item">
-                        <div class="viva-q" onclick="toggleVivaAns(this)">
-                            <div>
-                                <span class="q-num">Q3</span>
-                                How does the application connect to MySQL in XAMPP?
-                            </div>
-                            <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                    <!-- ========================================== -->
+                    <!-- CATEGORY 1: PYTHON WSGI & FLASK ARCHITECTURE -->
+                    <!-- ========================================== -->
+                    <div class="viva-category-group" data-cat="sec1">
+                        <div class="viva-section-header">
+                            <span>1. Python WSGI &amp; Flask Core Architecture</span>
+                            <span class="viva-sec-badge">8 Questions</span>
                         </div>
-                        <div class="viva-ans">
-                            <span class="viva-badge-task">Task 3: Database Layer</span><br>
-                            The application uses <code>Flask-SQLAlchemy</code> with the <code>PyMySQL</code> DBAPI driver. The URI is <code>mysql+pymysql://root:@localhost:3306/majestic_db</code>. Furthermore, <code>config.py</code> implements a zero-downtime resilience check: if XAMPP MySQL is unreachable, it automatically falls back to local SQLite (<code>pbl_framework.db</code>) to prevent evaluation crashes.
+
+                        <!-- Q1 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q1</span>What is Flask and why is it classified as a microframework?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 1: Core Framework</span><br>
+                                Flask is a lightweight Python WSGI web framework built on Werkzeug and Jinja2. It is classified as a "microframework" because it does not enforce a rigid project structure, specific ORM, or built-in form validation out-of-the-box, allowing developers complete architectural freedom to integrate custom libraries.
+                            </div>
+                        </div>
+
+                        <!-- Q2 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q2</span>Explain the WSGI (Web Server Gateway Interface) standard (PEP 3333).</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 1: WSGI Protocol</span><br>
+                                WSGI is a standard specified in PEP 3333 mediating communication between web servers (like Nginx, Apache, or Gunicorn) and Python web applications. The server receives the HTTP request, populates an environment dictionary (<code>environ</code>), and calls the Flask application callable with <code>start_response</code> to stream back HTTP status, headers, and body.
+                            </div>
+                        </div>
+
+                        <!-- Q3 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q3</span>How does Flask route incoming HTTP requests to view functions?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 1: Routing Engine</span><br>
+                                Flask uses route decorators like <code>@app.route('/path', methods=['GET', 'POST'])</code>. Internally, Werkzeug matches URL paths using regular expressions against its <code>Map</code> and <code>Rule</code> routing tree. Matching path variables (e.g., <code>&lt;int:id&gt;</code>) are automatically parsed and passed as arguments to the endpoint handler function.
+                            </div>
+                        </div>
+
+                        <!-- Q4 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q4</span>What is the difference between Application Context and Request Context in Flask?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 1: Thread-Local Contexts</span><br>
+                                Flask manages two thread-local contexts: The <strong>Application Context</strong> (accessible via <code>current_app</code> and <code>g</code>) holds app-level configurations and database connection handles. The <strong>Request Context</strong> (accessible via <code>request</code> and <code>session</code>) encapsulates request-specific attributes such as HTTP headers, query strings, and form parameters.
+                            </div>
+                        </div>
+
+                        <!-- Q5 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q5</span>What are Flask Blueprints and why are they used in modular systems?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 1: Modular Architecture</span><br>
+                                A Blueprint is an organizational pattern in Flask that allows routing, views, templates, and static assets to be isolated into modular sub-applications (e.g., auth, admin, store). Blueprints improve maintainability, separation of concerns, and enable large enterprise applications to be built collaboratively across teams.
+                            </div>
+                        </div>
+
+                        <!-- Q6 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q6</span>How does Jinja2 prevent Cross-Site Scripting (XSS)?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 1: Templating Engine</span><br>
+                                Jinja2 has auto-escaping enabled by default for HTML templates. It automatically converts dangerous characters like <code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code>, <code>"</code>, and <code>'</code> into safe HTML entity equivalents (e.g., <code>&amp;lt;</code>), preventing malicious script injection unless an author explicitly marks content with the <code>| safe</code> filter.
+                            </div>
+                        </div>
+
+                        <!-- Q7 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q7</span>What is the advantage of Flask's `url_for()` over hardcoded URL paths?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 1: Reverse Routing</span><br>
+                                <code>url_for()</code> performs dynamic reverse URL resolution based on endpoint function names rather than static strings. This decouples HTML links from route paths, automatically handles URL encoding, appends query parameters, and generates cache-busting timestamp tokens for static assets.
+                            </div>
+                        </div>
+
+                        <!-- Q8 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q8</span>How does custom error handling work in Flask using `@app.errorhandler`?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 1: Exception Handling</span><br>
+                                The <code>@app.errorhandler(404)</code> and <code>@app.errorhandler(500)</code> decorators intercept specific HTTP status codes or unhandled Python runtime exceptions. They suppress raw server stack traces from leaking to clients and render custom error templates maintaining application branding.
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Q4 -->
-                    <div class="viva-card-item">
-                        <div class="viva-q" onclick="toggleVivaAns(this)">
-                            <div>
-                                <span class="q-num">Q4</span>
-                                Why is password hashing critical, and which algorithm is used?
-                            </div>
-                            <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                    <!-- ========================================== -->
+                    <!-- CATEGORY 2: FRONT-END DESIGN & BOOTSTRAP 3 -->
+                    <!-- ========================================== -->
+                    <div class="viva-category-group" data-cat="sec2">
+                        <div class="viva-section-header">
+                            <span>2. Front-End Design &amp; Responsive Web Integration</span>
+                            <span class="viva-sec-badge">7 Questions</span>
                         </div>
-                        <div class="viva-ans">
-                            <span class="viva-badge-task">Task 2: Authentication Security</span><br>
-                            Plaintext passwords must never be stored because database breaches expose user credentials. Hashing is a one-way mathematical function. We utilize <code>werkzeug.security.generate_password_hash()</code>, which applies salted cryptographic algorithms (<code>scrypt:32768:8:1</code> or <code>pbkdf2:sha256</code>) to neutralize dictionary and rainbow-table attacks.
+
+                        <!-- Q9 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q9</span>How does Bootstrap 3's 12-column responsive grid system function?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 2: Responsive Grid</span><br>
+                                Bootstrap 3 utilizes a fluid 12-column layout defined via CSS media queries. It uses four core device breakpoints: Extra Small (<code>col-xs-*</code> &lt;768px), Small tablets (<code>col-sm-*</code> &ge;768px), Medium laptops (<code>col-md-*</code> &ge;992px), and Large desktops (<code>col-lg-*</code> &ge;1200px), summing up to 12 columns per row with 15px gutters.
+                            </div>
+                        </div>
+
+                        <!-- Q10 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q10</span>What is the architectural benefit of Template Inheritance (`base.html`)?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 2: UI Modularity</span><br>
+                                Template inheritance adheres to the DRY (Don't Repeat Yourself) principle. The root skeleton (<code>base.html</code>) defines the document structure, head metadata, Bootstrap CSS/JS CDN links, navbar, and notifications. Child templates extend it via <code>{% extends "base.html" %}</code> and populate isolated <code>{% block content %}</code> areas.
+                            </div>
+                        </div>
+
+                        <!-- Q11 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q11</span>What is the difference between client-side and server-side validation?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 2: Form Validation</span><br>
+                                Client-side validation (HTML5 attributes and JavaScript) provides instantaneous user feedback and reduces network roundtrips. However, client validation can easily be bypassed using curl or Postman. Therefore, strict server-side validation in Python is mandatory for data security and integrity.
+                            </div>
+                        </div>
+
+                        <!-- Q12 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q12</span>How are Flash Messages implemented in Flask and styled in Bootstrap?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 2: User Notifications</span><br>
+                                Flask's <code>flash(message, category)</code> stores notification messages temporarily inside the cryptographically signed session cookie. On the next HTTP render, Jinja2 evaluates <code>get_flashed_messages(with_categories=true)</code> and renders them into Bootstrap dismissible alerts (e.g., <code>class="alert alert-success"</code>).
+                            </div>
+                        </div>
+
+                        <!-- Q13 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q13</span>How does the UI maintain mobile responsiveness across diverse viewports?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 2: Cross-Device UI</span><br>
+                                Responsiveness is achieved through: 1. Viewport meta tag (<code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code>); 2. Fluid percentage widths and CSS Flexbox; 3. CSS media queries dynamically restructuring cards and tables for handheld screens.
+                            </div>
+                        </div>
+
+                        <!-- Q14 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q14</span>Explain the distinction between DOM Manipulation in Vanilla JS vs jQuery.</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 2: Front-End Scripting</span><br>
+                                Vanilla JavaScript utilizes native W3C Document Object Model APIs (such as <code>document.getElementById()</code> and <code>element.classList.toggle()</code>), offering maximum execution speed. jQuery provides a concise cross-browser syntactic wrapper (such as <code>$('#id').fadeToggle()</code>) that abstracts away browser inconsistencies.
+                            </div>
+                        </div>
+
+                        <!-- Q15 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q15</span>How do Bootstrap modal dialogues operate during checkout and alerts?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 2: Interactive Modals</span><br>
+                                Bootstrap modals use fixed CSS positioning (<code>position: fixed</code>) stacked above an active dark backdrop element (<code>.modal-backdrop</code>). Modals can be triggered either declaratively via HTML data attributes (<code>data-toggle="modal"</code>) or programmatically via JavaScript (<code>$('#modal').modal('show')</code>).
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Q5 -->
-                    <div class="viva-card-item">
-                        <div class="viva-q" onclick="toggleVivaAns(this)">
-                            <div>
-                                <span class="q-num">Q5</span>
-                                How was Task 4 (Automated Email Notification) engineered?
-                            </div>
-                            <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                    <!-- ========================================== -->
+                    <!-- CATEGORY 3: MYSQL, ORM & DATABASE SECURITY -->
+                    <!-- ========================================== -->
+                    <div class="viva-category-group" data-cat="sec3">
+                        <div class="viva-section-header">
+                            <span>3. Database Architecture, ORM &amp; SQL Resilience</span>
+                            <span class="viva-sec-badge">8 Questions</span>
                         </div>
-                        <div class="viva-ans">
-                            <span class="viva-badge-task">Task 4: Security Notification</span><br>
-                            Implemented in <code>utils/email_service.py</code> using Python's standard <code>smtplib</code> library. Connects to Gmail SMTP relay (<code>smtp.gmail.com</code>, port 587) with <code>STARTTLS</code> transport encryption. If login credentials match, a "Successful Login" confirmation is dispatched. If credentials fail, an urgent "Intrusion Alert" is dispatched. All events are logged into <code>login_audit_logs</code>.
+
+                        <!-- Q16 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q16</span>What is an ORM and why use Flask-SQLAlchemy instead of raw SQL?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 3: ORM Persistence</span><br>
+                                An Object-Relational Mapper (ORM) maps database tables to Python classes and rows to Python objects. Flask-SQLAlchemy abstracts low-level SQL syntax, enforces type safety, automatically handles parameterization, and simplifies complex queries through clean Python method calls like <code>User.query.filter_by().first()</code>.
+                            </div>
+                        </div>
+
+                        <!-- Q17 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q17</span>How does the application connect to MySQL inside XAMPP?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 3: DB Driver &amp; Connection</span><br>
+                                The application utilizes the pure-Python <code>PyMySQL</code> DBAPI driver. The connection URI in <code>config.py</code> is configured as <code>mysql+pymysql://root:@localhost:3306/majestic_db</code>. SQLAlchemy communicates over TCP port 3306 with the XAMPP MariaDB/MySQL engine.
+                            </div>
+                        </div>
+
+                        <!-- Q18 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q18</span>Explain the Zero-Downtime SQLite fallback engine in `config.py`.</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 3: Failover Architecture</span><br>
+                                During application boot, <code>config.py</code> executes an automated TCP probe testing port 3306. If the XAMPP MySQL daemon is stopped or unreachable, the system automatically redirects the database URI to local SQLite (<code>sqlite:///pbl_framework.db</code>), ensuring zero application crashes during viva presentations.
+                            </div>
+                        </div>
+
+                        <!-- Q19 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q19</span>What is SQL Injection (SQLi) and how does SQLAlchemy prevent it?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 3: SQL Injection Defense</span><br>
+                                SQL Injection occurs when untrusted user inputs are concatenated directly into SQL query strings. SQLAlchemy neutralizes SQLi by strictly utilizing parameterized prepared statements. Incoming user parameters are transmitted separately to the DB engine as literal bound data values, never as executable SQL commands.
+                            </div>
+                        </div>
+
+                        <!-- Q20 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q20</span>What are Primary Keys, Foreign Keys, and Referential Integrity?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 3: Relational Modeling</span><br>
+                                A Primary Key (e.g., <code>id</code>) uniquely identifies every individual record in a table. A Foreign Key (e.g., <code>user_id</code> in the orders table) references the primary key of another table, enforcing referential integrity and establishing relational associations (One-to-Many, Many-to-Many).
+                            </div>
+                        </div>
+
+                        <!-- Q21 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q21</span>What is Database Connection Pooling and why is it essential?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 3: Connection Pool</span><br>
+                                Connection pooling maintains an active pool of pre-established database TCP connections. Instead of repeatedly executing expensive socket handshakes for every HTTP request, Flask-SQLAlchemy borrows an existing connection from the pool and returns it upon request completion.
+                            </div>
+                        </div>
+
+                        <!-- Q22 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q22</span>How do `db.session.commit()` and `db.session.rollback()` uphold ACID compliance?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 3: ACID Transactions</span><br>
+                                SQLAlchemy operates within transactional sessions. Multiple database mutations are staged simultaneously. If all succeed, <code>db.session.commit()</code> writes them atomically. If an unhandled exception occurs, <code>db.session.rollback()</code> reverts all modifications, preventing database inconsistency.
+                            </div>
+                        </div>
+
+                        <!-- Q23 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q23</span>What are Database Indexes and when should they be added?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 3: Performance Indexing</span><br>
+                                Database indexes are auxiliary balanced search tree (B-Tree) data structures created on columns frequently used in <code>WHERE</code>, <code>JOIN</code>, or <code>ORDER BY</code> clauses (e.g., <code>username</code>, <code>email</code>). They reduce lookup complexity from $O(N)$ sequential table scans to $O(\log N)$ binary searches.
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Q6 -->
-                    <div class="viva-card-item">
-                        <div class="viva-q" onclick="toggleVivaAns(this)">
-                            <div>
-                                <span class="q-num">Q6</span>
-                                How does the Razorpay Payment Gateway integration work?
-                            </div>
-                            <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                    <!-- ========================================== -->
+                    <!-- CATEGORY 4: SECURITY & PASSWORD CRYPTOGRAPHY -->
+                    <!-- ========================================== -->
+                    <div class="viva-category-group" data-cat="sec4">
+                        <div class="viva-section-header">
+                            <span>4. Authentication Security &amp; Password Cryptography</span>
+                            <span class="viva-sec-badge">8 Questions</span>
                         </div>
-                        <div class="viva-ans">
-                            <span class="viva-badge-task">Task 5: Payment Gateway</span><br>
-                            1. <strong>Order Initiation:</strong> Client selects package; Flask calls <code>razorpay.Client.order.create()</code> converting INR to paise.<br>
-                            2. <strong>Modal Checkout:</strong> <code>checkout.js</code> launches the official Razorpay popup for UPI / Card / Netbanking.<br>
-                            3. <strong>Signature Verification:</strong> Razorpay returns <code>payment_id</code>, <code>order_id</code>, and signature token. The backend verifies HMAC-SHA256 integrity before database persistence and generating digital tax invoices.
+
+                        <!-- Q24 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q24</span>Why is storing plaintext passwords in a database a catastrophic vulnerability?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 4: Cryptographic Fundamentals</span><br>
+                                If a database is breached through SQL injection, leaked backups, or internal privilege misuse, plaintext passwords are immediately exposed. Because individuals commonly reuse identical passwords across corporate, email, and banking services, this exposes their entire digital identity.
+                            </div>
+                        </div>
+
+                        <!-- Q25 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q25</span>Explain the fundamental distinction between Encryption and Hashing.</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 4: Cryptography</span><br>
+                                **Encryption** is a two-way mathematical process reversible with a corresponding secret decryption key (e.g., AES-GCM, RSA). **Hashing** is a one-way mathematical transformation that maps arbitrary data into a fixed-length digest that is mathematically irreversible.
+                            </div>
+                        </div>
+
+                        <!-- Q26 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q26</span>What is a Salt in password hashing and what attack does it neutralize?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 4: Salted Hashing</span><br>
+                                A salt is a cryptographically strong pseudo-random string appended to each user's password prior to hashing. It guarantees that two users with identical passwords produce completely different hash digests, completely neutralizing precomputed Rainbow Table and dictionary attacks.
+                            </div>
+                        </div>
+
+                        <!-- Q27 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q27</span>Which password hashing algorithms are utilized by Werkzeug in this project?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 4: Werkzeug Security</span><br>
+                                Werkzeug's <code>generate_password_hash()</code> implements modern adaptive algorithms: <code>scrypt:32768:8:1</code> (memory-hard, neutralizing GPU/ASIC brute forcing) or <code>pbkdf2:sha256</code> with 260,000+ iterations, producing format strings: <code>method$salt$hash</code>.
+                            </div>
+                        </div>
+
+                        <!-- Q28 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q28</span>How does Flask protect session cookies from client-side tampering?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 4: Session Integrity</span><br>
+                                Flask cryptographically signs session cookie payloads using an HMAC (Hash-based Message Authentication Code) derived from the secret <code>app.config['SECRET_KEY']</code>. If a client tampers with the cookie payload, the HMAC signature mismatch causes Flask to invalidate the session.
+                            </div>
+                        </div>
+
+                        <!-- Q29 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q29</span>What are the `HttpOnly` and `SameSite` cookie security attributes?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 4: Cookie Protection</span><br>
+                                <code>HttpOnly</code> prevents client-side JavaScript (via <code>document.cookie</code>) from reading session cookies, neutralizing session hijacking via Cross-Site Scripting (XSS). <code>SameSite=Lax/Strict</code> instructs browsers not to dispatch cookies on cross-origin requests, mitigating CSRF attacks.
+                            </div>
+                        </div>
+
+                        <!-- Q30 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q30</span>What is Cross-Site Request Forgery (CSRF) and how is it mitigated?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 4: CSRF Defense</span><br>
+                                CSRF occurs when a malicious website tricks an authenticated browser into submitting unwanted actions to a target server. It is mitigated using Synchronizer CSRF Tokens (e.g., via <code>Flask-WTF</code>), where every form includes a unique, unpredictable token validated server-side.
+                            </div>
+                        </div>
+
+                        <!-- Q31 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q31</span>What is an Audit Trail and why does `login_audit_logs` record failed attempts?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 4: Security Auditing</span><br>
+                                An Audit Trail provides an immutable chronological log of system activity. Recording both successful logins and failed attempts (with IP addresses, usernames, and timestamps) enables intrusion detection systems to recognize brute-force patterns and provides forensic evidence.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ========================================== -->
+                    <!-- CATEGORY 5: RAZORPAY PAYMENT & SMTP ALERTS -->
+                    <!-- ========================================== -->
+                    <div class="viva-category-group" data-cat="sec5">
+                        <div class="viva-section-header">
+                            <span>5. Razorpay Payment Gateway, SMTP &amp; API Security</span>
+                            <span class="viva-sec-badge">9 Questions</span>
+                        </div>
+
+                        <!-- Q32 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q32</span>What is the end-to-end transaction lifecycle of Razorpay Payment Gateway?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 5: Payment Architecture</span><br>
+                                1. User selects a product; 2. Flask calls Razorpay REST API (<code>client.order.create()</code>); 3. Razorpay returns an <code>order_id</code>; 4. Frontend opens Razorpay modal (<code>checkout.js</code>); 5. Customer authorizes transaction via UPI/Card; 6. Razorpay redirects with payment ID and signature; 7. Flask verifies cryptographic HMAC signature before database persistence.
+                            </div>
+                        </div>
+
+                        <!-- Q33 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q33</span>Why must payment amounts be converted to paise in Razorpay API?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 5: Currency Handling</span><br>
+                                Financial systems avoid floating-point math due to binary representation rounding inaccuracies (e.g. <code>0.1 + 0.2 != 0.3</code>). Razorpay processes currency amounts in the smallest subunit (1 INR = 100 paise), guaranteeing absolute mathematical precision.
+                            </div>
+                        </div>
+
+                        <!-- Q34 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q34</span>How is Razorpay cryptographic signature verification performed?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 5: Cryptographic Integrity</span><br>
+                                The server constructs a payload string: <code>order_id + "|" + payment_id</code>. It computes an HMAC-SHA256 hash using the private <code>key_secret</code> via <code>razorpay.utility.verify_payment_signature()</code>. If the computed hash matches the returned <code>razorpay_signature</code>, authenticity is proven.
+                            </div>
+                        </div>
+
+                        <!-- Q35 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q35</span>What happens if a user alters the payment amount in browser DevTools?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 5: Tamper Proofing</span><br>
+                                The transaction will be rejected immediately. Because the order was pre-created server-side with a fixed authorized amount, Razorpay's server computes the signature using the authentic server order. Any altered client parameters result in a signature mismatch during verification.
+                            </div>
+                        </div>
+
+                        <!-- Q36 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q36</span>What is the difference between Test Mode and Live Mode in Razorpay?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 5: Sandbox vs Production</span><br>
+                                Test Mode (<code>rzp_test_*</code>) connects to Razorpay's sandbox simulator, allowing developers to simulate successful, failed, and OTP flows without transferring real money. Live Mode (<code>rzp_live_*</code>) communicates with authentic banking acquiring gateways and card networks.
+                            </div>
+                        </div>
+
+                        <!-- Q37 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q37</span>How does SMTP work and what is STARTTLS transport encryption on port 587?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 5: SMTP Relay Protocol</span><br>
+                                Simple Mail Transfer Protocol (SMTP) transmits emails between servers. On submission port 587, the client connects in plain text and immediately issues the <code>STARTTLS</code> command, upgrading the TCP socket to secure TLS encryption before transmitting login credentials and message contents.
+                            </div>
+                        </div>
+
+                        <!-- Q38 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q38</span>Why should 16-character Google App Passwords be used instead of main passwords?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 5: SMTP Authentication</span><br>
+                                Modern Google accounts enforce Two-Factor Authentication (2FA), which breaks headless SMTP daemons. A 16-character Google App Password grants isolated access strictly to the SMTP scope and can be revoked individually without changing or compromising the master account credentials.
+                            </div>
+                        </div>
+
+                        <!-- Q39 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q39</span>What is Payment Idempotency and why is it vital in financial systems?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 5: Financial Idempotency</span><br>
+                                Idempotency ensures that performing an operation multiple times produces the identical outcome without duplicate side effects. In payment gateways, idempotency keys ensure that if a user double-clicks the "Pay" button or experiences a network retry, they are charged only once.
+                            </div>
+                        </div>
+
+                        <!-- Q40 -->
+                        <div class="viva-card-item">
+                            <div class="viva-q" onclick="toggleVivaAns(this)">
+                                <div><span class="q-num">Q40</span>How are automated tax invoices generated upon successful checkout?</div>
+                                <span style="color: var(--gold-primary); font-size: 18px;">+</span>
+                            </div>
+                            <div class="viva-ans">
+                                <span class="viva-badge-task">Task 5: Invoice Generation</span><br>
+                                When signature verification passes, the backend populates an HTML/CSS corporate invoice template (<code>templates/payment_success.html</code>) with unique invoice numbers, transaction IDs, timestamp, and itemized totals, rendering it on-screen and dispatching an electronic copy via SMTP.
+                            </div>
                         </div>
                     </div>
 
@@ -690,6 +1212,29 @@
                 ans.style.display = 'block';
                 icon.innerText = '−';
             }
+        }
+
+        // Expand / Collapse all Viva items
+        function toggleAllViva(expand) {
+            const answers = document.querySelectorAll('.viva-ans');
+            const icons = document.querySelectorAll('.viva-q span:last-child');
+            answers.forEach(a => a.style.display = expand ? 'block' : 'none');
+            icons.forEach(i => i.innerText = expand ? '−' : '+');
+        }
+
+        // Filter Viva questions by category
+        function filterCategory(cat, btn) {
+            document.querySelectorAll('.viva-filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const groups = document.querySelectorAll('.viva-category-group');
+            groups.forEach(g => {
+                if (cat === 'all' || g.getAttribute('data-cat') === cat) {
+                    g.style.display = 'block';
+                } else {
+                    g.style.display = 'none';
+                }
+            });
         }
 
         // Stage 1: Unlock with Password
@@ -782,7 +1327,7 @@
             label.innerText = 'Authorizing & Dispatching Notice...';
 
             try {
-                // 1. Post to Express backend
+                // 1. Post to Express backend (if running locally or hosted)
                 fetch('/api/verify-and-download', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
