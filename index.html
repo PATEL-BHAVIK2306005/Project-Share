@@ -553,13 +553,13 @@
                                 <span>Authorized Referral Code *</span>
                                 <span style="color: var(--gold-primary);">Required</span>
                             </label>
-                            <input type="text" id="referral_code" class="input-dark mono-text" placeholder="e.g., BHAVIK-701-VIP" oninput="verifyReferralLive(this.value)">
-                            <div id="ref_hint" class="hint-text">User must ask Bhavik Patel for an authorized referral code.</div>
+                            <input type="text" id="referral_code" class="input-dark mono-text" placeholder="" oninput="verifyReferralLive(this.value)">
+                            <div id="ref_hint" class="hint-text">Ask Admin for the referral code.</div>
                             
                             <div class="referral-req-card">
                                 <span>🔑</span>
                                 <div>
-                                    <strong>Don't have a referral code?</strong> Contact Bhavik Patel (<code>bhavik.itmbu@gmail.com</code>) to obtain an authorized passkey.
+                                    <strong>Don't have a referral code?</strong> Ask Admin (Bhavik Patel) for the referral code. Contact: <code>bhavik.itmbu@gmail.com</code>
                                 </div>
                             </div>
                         </div>
@@ -1285,7 +1285,7 @@
 
             if (!code) {
                 hint.className = 'hint-text';
-                hint.innerText = 'User must ask Bhavik Patel for an authorized referral code.';
+                hint.innerText = 'Ask Admin for the referral code.';
                 return false;
             }
 
@@ -1295,7 +1295,7 @@
                 return true;
             } else {
                 hint.className = 'hint-text hint-error';
-                hint.innerText = '⚠️ Unrecognized Code. Contact Bhavik Patel to receive your passkey.';
+                hint.innerText = '⚠️ Unrecognized Code. Ask Admin for the referral code.';
                 return false;
             }
         }
